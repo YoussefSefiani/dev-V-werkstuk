@@ -1,4 +1,1 @@
-const functions = {
-};
-
-module.exports = functions;
+module.exports = {};
