@@ -1,3 +1,5 @@
+const { knex } = require("../db/db");
+
 function checkIfNumber(number) {
   return !isNaN(parseInt(number)) ? parseInt(number) : false;
 }
@@ -30,6 +32,42 @@ function checkIfIBAN(IBAN) {
   return IBAN && pattern.test(IBAN) ? IBAN : false;
 }
 
+// DATABASE FUNCTIONS //
+
+const dummyData = {
+  first_name: "Youssef",
+  last_name: "Sefiani",
+  birth_date: "02/04/2000",
+  email: "Youssef.sefiani@student.ehb.be",
+  description: "Hello I am Youssef",
+  iban: "BE12 3456 7891 0111",
+};
+
+function createTable() {
+  knex.schema
+    .createTable("influencers", (table) => {
+      table.increments("id");
+      table.string("first_name");
+      table.string("last_name");
+      table.string("birth_date");
+      table.string("email");
+      table.string("description").nullable();
+      table.string("iban").nullable();
+    })
+    .then(() => {
+      return knex("influencers").insert(dummyData);
+    });
+}
+
+function deleteTable() {
+  knex.schema.hasTable("influencers").then(function (exists) {
+    if (!exists) {
+      knex.schema.dropTable("influencers");
+    }
+    console.log("here not deleted");
+  });
+}
+
 module.exports = {
   checkIfNumber: checkIfNumber,
   capitalizeFirstLetter: capitalizeFirstLetter,
@@ -37,4 +75,6 @@ module.exports = {
   checkIfEmail: checkIfEmail,
   countStringLength: countStringLength,
   checkIfIBAN: checkIfIBAN,
+  createTable: createTable,
+  deleteTable: deleteTable,
 };
