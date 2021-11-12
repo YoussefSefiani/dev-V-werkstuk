@@ -6,6 +6,19 @@ const {
   checkIfNumber,
 } = require("../../functions/functions");
 
+/**
+ * [PUT]
+ * Route to edit an influencer from database
+ * @param {String} first_name
+ * @param {String} last_name
+ * @param {String} birth_date
+ * @param {String} email
+ * @param {String} description
+ * @param {String} iban
+ * @returns {int} returns status 200 if correctly edited from db
+ *
+ */
+
 router.put("/:id", async (req, res) => {
   try {
     const influencer = checkInfluencerObject(req.body);
