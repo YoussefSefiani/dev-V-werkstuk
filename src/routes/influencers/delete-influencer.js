@@ -3,10 +3,13 @@ const router = express.Router();
 const { knex } = require("../../db/db");
 const { checkIfNumber } = require("../../functions/functions");
 
-router.get("/:id", async (req, res) => {
+router.delete("/:id", async (req, res) => {
   const id = checkIfNumber(req.params.id);
   try {
-    res.send(await knex.select().from("influencers").where("id", id));
+    if (id) {
+      await knex("influencers").where("id", id).del();
+      res.sendStatus(200);
+    }
   } catch (error) {
     res.send(error);
   }

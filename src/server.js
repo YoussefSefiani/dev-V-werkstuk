@@ -9,10 +9,14 @@ const { createTable, deleteTable } = require("./functions/functions");
 const getInfluencers = require("./routes/influencers/get-influencers");
 const getInfluencer = require("./routes/influencers/get-influencer");
 const addInfluencer = require("./routes/influencers/add-influencer");
+const editInfluencer = require("./routes/influencers/edit-influencer");
+const deleteInfluencer = require("./routes/influencers/delete-influencer");
 
 app.use("/influencers", getInfluencers);
 app.use("/influencers", getInfluencer);
 app.use("/influencers", addInfluencer);
+app.use("/influencers", editInfluencer);
+app.use("/influencers", deleteInfluencer);
 
 /* deleteTable();
 createTable(); */

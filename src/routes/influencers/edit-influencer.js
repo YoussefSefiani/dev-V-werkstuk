@@ -1,13 +1,18 @@
 const express = require("express");
 const router = express.Router();
 const { knex } = require("../../db/db");
-const { checkInfluencerObject } = require("../../functions/functions");
+const {
+  checkInfluencerObject,
+  checkIfNumber,
+} = require("../../functions/functions");
 
-router.post("/", async (req, res) => {
+router.put("/:id", async (req, res) => {
   try {
     const influencer = checkInfluencerObject(req.body);
+    const id = checkIfNumber(req.params.id);
     if (influencer) {
-      await knex("influencers").insert(influencer);
+      console.log("helloooooooo");
+      await knex("influencers").whereRaw("id = ?", [id]).update(influencer);
       res.sendStatus(200);
     }
     console.log(`influencer ${influencer.first_name} in db`);

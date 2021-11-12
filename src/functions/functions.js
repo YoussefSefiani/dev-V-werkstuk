@@ -1,5 +1,6 @@
 const { knex } = require("../db/db");
 
+// HELPER FUNCTIONS //
 function checkIfNumber(number) {
   return !isNaN(parseInt(number)) ? parseInt(number) : false;
 }
@@ -30,6 +31,37 @@ function countStringLength(string) {
 function checkIfIBAN(IBAN) {
   const pattern = /[A-Z]{2}[0-9]{2}[ ][0-9]{4}[ ][0-9]{4}[ ][0-9]{4}$/;
   return IBAN && pattern.test(IBAN) ? IBAN : false;
+}
+
+function checkInfluencerObject(influencer) {
+  const {
+    first_name,
+    last_name,
+    birth_date,
+    email,
+    description,
+    iban,
+  } = influencer;
+
+  let checkedInfluencer = {
+    first_name: capitalizeFirstLetter(first_name),
+    last_name: capitalizeFirstLetter(last_name),
+    birth_date: checkIfDate(birth_date),
+    email: checkIfEmail(email),
+    description: countStringLength(description),
+    iban: checkIfIBAN(iban),
+  };
+
+  for (const key in checkedInfluencer) {
+    console.log(key);
+    console.log(checkedInfluencer[key]);
+    if (!checkedInfluencer[key] && key !== "description" && key !== "iban") {
+      console.log(`field ${key} is not filled`);
+      return;
+    }
+  }
+  console.log("influencer checked correctly");
+  return checkedInfluencer;
 }
 
 // DATABASE FUNCTIONS //
@@ -77,4 +109,5 @@ module.exports = {
   checkIfIBAN: checkIfIBAN,
   createTable: createTable,
   deleteTable: deleteTable,
+  checkInfluencerObject: checkInfluencerObject,
 };
