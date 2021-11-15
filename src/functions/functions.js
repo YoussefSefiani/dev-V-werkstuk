@@ -86,6 +86,8 @@ function checkIfIBAN(IBAN) {
  */
 
 function checkInfluencerObject(influencer) {
+  let openFields = [];
+
   const {
     first_name,
     last_name,
@@ -107,13 +109,17 @@ function checkInfluencerObject(influencer) {
   for (const key in checkedInfluencer) {
     console.log(key);
     console.log(checkedInfluencer[key]);
+
     if (!checkedInfluencer[key] && key !== "description" && key !== "iban") {
-      console.log(`field ${key} is not filled`);
-      return;
+      openFields.push(key);
+      console.log(`field ${key} is not filled`, openFields);
     }
   }
   console.log("influencer checked correctly");
-  return checkedInfluencer;
+  return {
+    checkedInfluencer: checkedInfluencer,
+    openFields: openFields,
+  };
 }
 
 // DATABASE FUNCTIONS //

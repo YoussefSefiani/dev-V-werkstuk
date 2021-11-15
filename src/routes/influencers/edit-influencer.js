@@ -21,14 +21,20 @@ const {
 
 router.put("/:id", async (req, res) => {
   try {
-    const influencer = checkInfluencerObject(req.body);
+    const body = checkInfluencerObject(req.body);
+    console.log(body);
     const id = checkIfNumber(req.params.id);
-    if (influencer) {
-      console.log("helloooooooo");
-      await knex("influencers").whereRaw("id = ?", [id]).update(influencer);
+    if (body.checkedInfluencer) {
+      console.log("in edit");
+      await knex("influencers")
+        .where("id", id)
+        .update(body.checkedInfluencer)
+        .then((response) => {
+          console.log(response);
+        });
       res.sendStatus(200);
     }
-    console.log(`influencer ${influencer.first_name} in db`);
+    console.log(`influencer ${body.checkedInfluencer.first_name} in db`);
   } catch (error) {
     res.send(error);
   }

@@ -10,7 +10,10 @@ const { knex } = require("../../db/db");
 
 router.get("/", async (req, res) => {
   try {
-    res.send(await knex.select().from("influencers"));
+    const influencers = await knex.select().from("influencers");
+    influencers.length
+      ? res.status(200).send(influencers)
+      : "No influencers found";
   } catch (error) {
     res.send(error);
   }

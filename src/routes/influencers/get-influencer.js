@@ -7,14 +7,24 @@ const { checkIfNumber } = require("../../functions/functions");
  * [GET]
  * Route to get an influencer from database
  * @param {int} id id of influencer to get
- * @returns {Object} returns the influencer if correctly selected from db
+ * @returns {Array} returns the influencer if correctly selected from db
  *
  */
 
 router.get("/:id", async (req, res) => {
   const id = checkIfNumber(req.params.id);
   try {
-    res.send(await knex.select().from("influencers").where("id", id));
+    if (id) {
+      const influencer = await knex
+        .select()
+        .from("influencers")
+        .where("id", id);
+      res.send(
+        influencer.length
+          ? influencer
+          : `influencer with id ${id} does not exist`
+      );
+    }
   } catch (error) {
     res.send(error);
   }

@@ -15,8 +15,17 @@ router.delete("/:id", async (req, res) => {
   const id = checkIfNumber(req.params.id);
   try {
     if (id) {
-      await knex("influencers").where("id", id).del();
-      res.sendStatus(200);
+      await knex("influencers")
+        .where("id", id)
+        .del()
+        .then((response) => {
+          if (response) {
+            console.log(response);
+            res.status(200).send(`Influencer with id ${id} deleted.`);
+            return;
+          }
+          res.status(404).send(`Influencer with id ${id} does not exist.`);
+        });
     }
   } catch (error) {
     res.send(error);

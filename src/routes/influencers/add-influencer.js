@@ -3,7 +3,6 @@ const router = express.Router();
 const { knex } = require("../../db/db");
 const { checkInfluencerObject } = require("../../functions/functions");
 
-
 /**
  * [POST]
  * Route to add an influencer to database
@@ -18,14 +17,33 @@ const { checkInfluencerObject } = require("../../functions/functions");
  */
 
 router.post("/", async (req, res) => {
+  let { checkedInfluencer, openFields } = checkInfluencerObject(req.body);
   try {
-    const influencer = checkInfluencerObject(req.body);
-    if (influencer) {
-      await knex("influencers").insert(influencer);
-      res.sendStatus(200);
+    if (!openFields.length) {
+      await knex("influencers").insert(checkedInfluencer);
+      res
+        .status(200)
+        .send(
+          `influencer ${checkedInfluencer.first_name} ${checkedInfluencer.last_name} in db`
+        );
+      console.log();
+      return;
     }
-    console.log(`influencer ${influencer.first_name} in db`);
+    throw error;
   } catch (error) {
+    if (openFields.length) {
+      console.log("there are openfields");
+      let errors = "";
+      openFields.forEach((error, index) => {
+        openFields.length - 1 === index
+          ? (errors += `${error}.`)
+          : (errors += `${error}, `);
+      });
+      res.status(401).send({
+        message: `Could not add influencer to db. Missing fields: ${errors}`,
+      });
+      return;
+    }
     res.send(error);
   }
 });
