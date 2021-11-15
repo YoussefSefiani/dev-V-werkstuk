@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon --legacy-watch src/server.js",
     "test": "jest --watchAll --detectOpenHandles --unhandled-rejections=strict"
   },
   "repository": {
@@ -23,5 +24,8 @@
     "knex": "^0.95.14",
     "nodemon": "^2.0.15",
     "pg": "^8.7.1"
+  },
+  "devDependencies": {
+    "supertest": "^6.1.6"
   }
 }
