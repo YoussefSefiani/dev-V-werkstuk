@@ -20,11 +20,14 @@ router.delete("/:id", async (req, res) => {
         .del()
         .then((response) => {
           if (response) {
-            console.log(response);
-            res.status(200).send(`Influencer with id ${id} deleted.`);
+            res
+              .status(200)
+              .send({ message: `Influencer with id ${id} deleted.` });
             return;
           }
-          res.status(404).send(`Influencer with id ${id} does not exist.`);
+          res
+            .status(404)
+            .send({ message: `Influencer with id ${id} does not exist.` });
         });
     }
   } catch (error) {

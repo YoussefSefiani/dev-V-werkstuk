@@ -32,7 +32,7 @@ router.put("/:id", async (req, res) => {
         .then((response) => {
           console.log(response);
         });
-      res.sendStatus(200);
+      res.status(200).send({message: `influencer with id ${id} changed`});
     }
     console.log(`influencer ${body.checkedInfluencer.first_name} in db`);
   } catch (error) {

@@ -21,12 +21,9 @@ router.post("/", async (req, res) => {
   try {
     if (!openFields.length) {
       await knex("influencers").insert(checkedInfluencer);
-      res
-        .status(200)
-        .send(
-          `influencer ${checkedInfluencer.first_name} ${checkedInfluencer.last_name} in db`
-        );
-      console.log();
+      res.status(200).send({
+        message: `influencer ${checkedInfluencer.first_name} ${checkedInfluencer.last_name} in db`,
+      });
       return;
     }
     throw error;

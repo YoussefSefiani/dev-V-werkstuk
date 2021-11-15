@@ -124,35 +124,76 @@ function checkInfluencerObject(influencer) {
 
 // DATABASE FUNCTIONS //
 
-const dummyData = {
-  first_name: "Youssef",
-  last_name: "Sefiani",
-  birth_date: "02/04/2000",
-  email: "Youssef.sefiani@student.ehb.be",
-  description: "Hello I am Youssef",
-  iban: "BE12 3456 7891 0111",
-};
+const dummyData = [
+  {
+    first_name: "John",
+    last_name: "Dzz",
+    birth_date: "02/04/2000",
+    email: "Youssef.sefiani@student.ehb.be",
+    description: "Hello I am Youssef",
+    iban: "BE12 3456 7891 0111",
+  },
+  {
+    first_name: "Youssef",
+    last_name: "Sefiani",
+    birth_date: "02/04/2000",
+    email: "dd.fff@student.ehb.be",
+    description: "Hello I am fsdfzf",
+    iban: "BE12 3456 7891 0111",
+  },
+  {
+    first_name: "Youssef",
+    last_name: "Sefiani",
+    birth_date: "02/04/2000",
+    email: "Youssef.sefiani@student.ehb.be",
+    description: "Hello I am Youssef",
+    iban: "BE12 3456 7891 0111",
+  },
+  {
+    first_name: "fsdfs",
+    last_name: "fsfs",
+    birth_date: "02/04/2000",
+    email: "fsf.fsfs@student.ehb.be",
+    description: "Hello I am fsfsdf",
+    iban: "BE12 3456 7891 0111",
+  },
+  {
+    first_name: "Joaa",
+    last_name: "innn",
+    birth_date: "02/04/2000",
+    email: "gfsgs.ggsgsi@student.ehb.be",
+    description: "Hello I am Joaa",
+    iban: "BE12 3456 7891 0111",
+  },
+];
 
 function createTable() {
-  knex.schema
-    .createTable("influencers", (table) => {
-      table.increments("id");
-      table.string("first_name");
-      table.string("last_name");
-      table.string("birth_date");
-      table.string("email");
-      table.string("description").nullable();
-      table.string("iban").nullable();
-    })
-    .then(() => {
-      return knex("influencers").insert(dummyData);
-    });
-}
-
-function deleteTable() {
   knex.schema.hasTable("influencers").then(function (exists) {
     if (!exists) {
-      knex.schema.dropTable("influencers");
+      knex.schema
+        .createTable("influencers", (table) => {
+          table.increments("id");
+          table.string("first_name");
+          table.string("last_name");
+          table.string("birth_date");
+          table.string("email");
+          table.string("description").nullable();
+          table.string("iban").nullable();
+        })
+        .then(() => {
+          return knex("influencers").insert(dummyData);
+        });
+    }
+  });
+}
+
+async function deleteTable() {
+  knex.schema.hasTable("influencers").then(function (exists) {
+    if (exists) {
+      knex.schema.dropTable("influencers").then(() => {
+        console.log("deleted");
+      });
+      return;
     }
     console.log("here not deleted");
   });
