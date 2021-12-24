@@ -108,7 +108,7 @@ describe("edit /influencer", function () {
   });
 });
 
-/* describe("DELETE /influencer/:id", function () {
+describe("DELETE /influencer/:id", function () {
   let id;
   test("should get last influencer and return id", function (done) {
     request
@@ -132,7 +132,7 @@ describe("edit /influencer", function () {
           );
       });
   });
-}); */
+});
 
 //////////////////////////////////////// PAYMENTS TEST ////////////////////////////////////////
 
@@ -219,7 +219,7 @@ describe("edit /payment", function () {
   });
 });
 
-/* describe("DELETE /payment/:id", function () {
+describe("DELETE /payment/:id", function () {
   let id;
   test("should get last payment, return id and delete him.", function (done) {
     request
@@ -244,7 +244,6 @@ describe("edit /payment", function () {
       });
   });
 });
- */
 
 //////////////////////////////////////// BRAND TEST ////////////////////////////////////////
 
