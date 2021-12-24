@@ -5,8 +5,8 @@ const { checkIfNumber } = require("../../functions/helpers");
 
 /**
  * [DELETE]
- * Route to delete an influencer from database
- * @param {int} id id of influencer to delete
+ * Route to delete an payment from database
+ * @param {int} id id of payment to delete
  * @returns {int} returns status 200 if correctly deleted from db
  *
  */
@@ -15,19 +15,17 @@ router.delete("/:id", async (req, res) => {
   const id = checkIfNumber(req.params.id);
   try {
     if (id) {
-      await knex("influencers")
+      await knex("payments")
         .where("id", id)
         .del()
         .then((response) => {
           if (response) {
-            res
-              .status(200)
-              .send({ message: `Influencer with id ${id} deleted.` });
+            res.status(200).send({ message: `payment with id ${id} deleted.` });
             return;
           }
           res
             .status(404)
-            .send({ message: `Influencer with id ${id} does not exist.` });
+            .send({ message: `payment with id ${id} does not exist.` });
         });
     }
   } catch (error) {

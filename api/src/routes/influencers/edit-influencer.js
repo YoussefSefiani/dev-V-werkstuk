@@ -4,7 +4,7 @@ const { knex } = require("../../db/db");
 const {
   checkInfluencerObject,
   checkIfNumber,
-} = require("../../functions/functions");
+} = require("../../functions/helpers");
 
 /**
  * [PUT]
@@ -32,7 +32,7 @@ router.put("/:id", async (req, res) => {
         .then((response) => {
           console.log(response);
         });
-      res.status(200).send({message: `influencer with id ${id} changed`});
+      res.status(200).send({ message: `influencer with id ${id} changed` });
     }
     console.log(`influencer ${body.checkedInfluencer.first_name} in db`);
   } catch (error) {

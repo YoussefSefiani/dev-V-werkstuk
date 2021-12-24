@@ -9,6 +9,7 @@ const { knex } = require("../../db/db");
  */
 
 router.get("/", async (req, res) => {
+  console.log("in influencers route");
   try {
     const influencers = await knex.select().from("influencers");
     influencers.length

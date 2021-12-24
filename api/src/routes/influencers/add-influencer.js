@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { knex } = require("../../db/db");
-const { checkInfluencerObject } = require("../../functions/functions");
+const { checkInfluencerObject } = require("../../functions/helpers");
 
 /**
  * [POST]
