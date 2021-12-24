@@ -9,12 +9,10 @@ const { knex } = require("../../db/db");
  */
 
 router.get("/", async (req, res) => {
-  console.log("in influencers route");
+  console.log("in brand route");
   try {
-    const influencers = await knex.select().from("influencers");
-    influencers.length
-      ? res.status(200).send(influencers)
-      : "No influencers found";
+    const brands = await knex.select().from("fake_brands");
+    brands.length ? res.status(200).send(brands) : "No brands found";
   } catch (error) {
     res.send(error);
   }

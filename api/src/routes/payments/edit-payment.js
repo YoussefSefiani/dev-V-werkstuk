@@ -2,13 +2,13 @@ const express = require("express");
 const router = express.Router();
 const { knex } = require("../../db/db");
 const {
-  checkInfluencerObject,
+  checkPaymentObject,
   checkIfNumber,
 } = require("../../functions/helpers");
 
 /**
  * [PUT]
- * Route to edit an influencer from database
+ * Route to edit an influencer in database
  * @param {String} first_name
  * @param {String} last_name
  * @param {String} birth_date
@@ -21,20 +21,15 @@ const {
 
 router.put("/:id", async (req, res) => {
   try {
-    const body = checkInfluencerObject(req.body);
+    const body = checkPaymentObject(req.body);
     console.log(body);
     const id = checkIfNumber(req.params.id);
-    if (body.checkedInfluencer) {
-      console.log("in edit");
-      await knex("influencers")
-        .where("id", id)
-        .update(body.checkedInfluencer)
-        .then((response) => {
-          console.log(response);
-        });
-      res.status(200).send({ message: `influencer with id ${id} changed` });
+    if (body.checkedPayment) {
+      console.log("indddedit");
+      await knex("payments").where("id", id).update(body.checkedPayment);
+      res.status(200).send({ message: `payment with id ${id} changed` });
+      console.log("done ext");
     }
-    console.log(`influencer ${body.checkedInfluencer.first_name} in db`);
   } catch (error) {
     res.send(error);
   }
