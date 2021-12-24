@@ -7,7 +7,7 @@ const { checkIfNumber } = require("../../functions/helpers");
  * [GET]
  * Route to get an influencer from database
  * @param {int} id id of influencer to get
- * @returns {Array} returns the influencer if correctly selected from db
+ * @returns {Array} returns the influencer if correctly selected on db
  *
  */
 

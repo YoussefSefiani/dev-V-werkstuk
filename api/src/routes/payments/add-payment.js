@@ -5,13 +5,10 @@ const { checkPaymentObject } = require("../../functions/helpers");
 
 /**
  * [POST]
- * Route to add an influencer to database
- * @param {String} first_name
- * @param {String} last_name
- * @param {String} birth_date
- * @param {String} email
- * @param {String} description
- * @param {String} iban
+ * Route to add an payment to database
+ * @param {String} influencer_id
+ * @param {String} brand_id
+ * @param {String} amount
  * @returns {int} returns status 200 if correctly added into db
  *
  */

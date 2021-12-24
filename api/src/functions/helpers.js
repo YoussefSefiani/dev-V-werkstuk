@@ -73,6 +73,8 @@ function checkIfIBAN(IBAN) {
   return IBAN && pattern.test(IBAN) ? IBAN : false;
 }
 
+//////////////////////////////////////// OBJECTS HELPER FUNCTIONS ////////////////////////////////////////
+
 /**
  * checks if required fields are sent
  * @param {String} first_name
@@ -84,8 +86,6 @@ function checkIfIBAN(IBAN) {
  * @returns {Object} returns the given Object if it successfully checked everything
  *
  */
-
-//////////////////////////////////////// OBJECTS HELPER FUNCTIONS ////////////////////////////////////////
 
 function checkInfluencerObject(influencer) {
   let openFields = [];
@@ -118,6 +118,13 @@ function checkInfluencerObject(influencer) {
   };
 }
 
+/**
+ * checks if required fields are sent
+ * @param {String} name
+ * @returns {Object} returns the given Object if it successfully checked everything
+ *
+ */
+
 function checkBrandObject(brand) {
   const { name } = brand;
 
@@ -129,6 +136,15 @@ function checkBrandObject(brand) {
     checkedBrand: checkedBrand,
   };
 }
+
+/**
+ * checks if required fields are sent
+ * @param {Integer} influencer_id
+ * @param {Integer} influencer_id
+ * @param {Integer} amount
+ * @returns {Object} returns the given Object if it successfully checked everything
+ *
+ */
 
 function checkPaymentObject(payment) {
   const { influencer_id, brand_id, amount } = payment;

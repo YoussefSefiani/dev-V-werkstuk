@@ -4,8 +4,8 @@ const { knex } = require("../../db/db");
 
 /**
  * [GET]
- * Route to get all the influencers from database
- * @returns {Array[Object]} returns array of all the influencers
+ * Route to get all the brands from database
+ * @returns {Array[Object]} returns array of all the brands
  */
 
 router.get("/", async (req, res) => {

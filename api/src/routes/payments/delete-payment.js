@@ -5,8 +5,8 @@ const { checkIfNumber } = require("../../functions/helpers");
 
 /**
  * [DELETE]
- * Route to delete an influencer from database
- * @param {int} id id of influencer to delete
+ * Route to delete an payment from database
+ * @param {int} id id of payment to delete
  * @returns {int} returns status 200 if correctly deleted from db
  *
  */

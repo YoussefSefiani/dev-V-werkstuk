@@ -8,14 +8,11 @@ const {
 
 /**
  * [PUT]
- * Route to edit an influencer in database
- * @param {String} first_name
- * @param {String} last_name
- * @param {String} birth_date
- * @param {String} email
- * @param {String} description
- * @param {String} iban
- * @returns {int} returns status 200 if correctly edited from db
+ * Route to edit an payment in database
+ * @param {String} influencer_id
+ * @param {String} brand_id
+ * @param {String} amount
+ * @returns {int} returns status 200 if correctly edited on db
  *
  */
 
