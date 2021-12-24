@@ -5,7 +5,7 @@ const {
   checkIfEmail,
   countStringLength,
   checkIfIBAN,
-} = require("../src/functions/functions");
+} = require("../src/functions/helpers");
 
 test("function to check if input is a number", () => {
   expect(checkIfNumber()).toBeFalsy();
